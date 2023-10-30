@@ -4,6 +4,16 @@ encoded_pass = ''
 def menu():
     print("-------------\n1. Encode\n2. Decode\n3. Quit")
 
+def encode(password):
+    encoded_password = ''
+    for char in password:
+        if char.isdigit():
+            new_digit = str(int(char) + 3)
+            encoded_password += new_digit
+        else:
+            encoded_password += char
+    return encoded_password
+
 menu()
 
 while True:
@@ -11,11 +21,8 @@ while True:
 
     if option == '1':
         password = input("Please enter a password to encode: ")
-        if password.isdigit():
-            encoded_pass = str(int(password) * 2)
-            print("Your password has been encoded and stored!")
-        else:
-            print("Please enter a valid password")
+        encoded_pass = encode(password)
+        print("Your password has been encoded and stored!")
     elif option == '2':
         if encoded_pass:
             print(f'The encoded password is {encoded_pass} and the original password is {password}.')
